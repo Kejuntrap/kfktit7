@@ -1,56 +1,50 @@
+@font-face{
+	font-family: 'Hiragino Kaku Gothic ProN';
+	src: local("Hiragino Kaku Gothic ProN");
+	font-weight:100;
+}
+
+@font-face{
+	font-family: 'Meiryo';
+	src: local("Meiryo");
+	font-weight:100;
+}
+
 .main{
 	display:block;
-	background-color:#333333;
+	background-color:#a8d5e7;
+	text-align:center;
+	font-family:Hiragino Kaku Gothic ProN,Meiryo;
 }
 
 #toptitle{
+	display: inline-block;
+	width : 100%;
 	font-size: 64px;
 	text-align:center;
-	color:#eeeeee;
-	padding-top: 30px;
-	padding-bottom: 30px;
+	color:#f20f4d;
+	padding-top: 3px;
+	padding-bottom: 3px;
+	font-family:Hiragino Kaku Gothic ProN,Meiryo
 }
 
-.kyopro{
+.icon{
 	display: inline-block;
-	width:49%;
-	padding-top: 80px;
-	padding-bottom: 80px;
-	background-color:#c8c8c8;
+	width : 100%;
+	background-color:#a8d5e7;
+	color:#f20f4d;
 	text-align:center;
 	font-size: 32px;
-	margin: 1px;
+	font-family:Hiragino Kaku Gothic ProN,Meiryo
 }
 
-.game{
+.name,.contact{
 	display: inline-block;
-	width:49%;
-	padding-top: 80px;
-	padding-bottom: 80px;
-	background-color:#c8c8c8;
+	width : 100%;
+	background-color:#a8d5e7;
+	color:#f20f4d;
 	text-align:center;
 	font-size: 32px;
-	margin: 1px;
+	font-family:Hiragino Kaku Gothic ProN,Meiryo
 }
 
-.etc{
-	display: inline-block;
-	width:49%;
-	padding-top: 80px;
-	padding-bottom: 80px;
-	background-color:#c8c8c8;
-	text-align:center;
-	font-size: 32px;
-	margin: 1px;
-}
-
-.mediaart{
-	display: inline-block;
-	width:49%;
-	padding-top: 80px;
-	padding-bottom: 80px;
-	background-color:#c8c8c8;
-	text-align:center;
-	font-size: 32px;
-	margin: 1px;
-}
