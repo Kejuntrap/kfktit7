@@ -513,9 +513,9 @@ window.addEventListener("deviceorientation", (dat) => {
     beta  = dat.beta;   // x軸（左右）まわりの回転の角度（引き起こすとプラス）
     gamma = dat.gamma;  // y軸（上下）まわりの回転の角度（右に傾けるとプラス）
 
-    text = "alpha: "+alpha+" beta: "+beta+" gamma: "+gamma;
-    document.getElementById("rotate").innerHTML = text;
-
+    //text = "alpha: "+alpha+" beta: "+beta+" gamma: "+gamma;
+    //document.getElementById("rotate").innerHTML = text;
+    console.log(alpha+" "+beta+" "+gamma);
 });
 
 
@@ -537,7 +537,7 @@ var getinfo = function getinfo(position){
     for(var i=0; i<mount; i++){
         const dif_lon = Math.abs(now_lon * 180.0 / Math.PI - mountdata[i].longitude) * Math.PI / 180.0;
         var res = Math.acos( Math.sin(now_lat) * Math.sin(mountdata[i].latitude * Math.PI / 180.0) + Math.cos(now_lat) * Math.cos(mountdata[i].latitude * Math.PI / 180.0) * Math.cos(dif_lon) );
-        console.log(radius * res +" "+ mountdata[i].name);
+        //console.log(radius * res +" "+ mountdata[i].name);
     }
 }
 
