@@ -513,9 +513,9 @@ window.addEventListener("deviceorientation", (dat) => {
     beta  = dat.beta;   // x軸（左右）まわりの回転の角度（引き起こすとプラス）
     gamma = dat.gamma;  // y軸（上下）まわりの回転の角度（右に傾けるとプラス）
 
-    //text = "alpha: "+alpha+" beta: "+beta+" gamma: "+gamma;
-    //document.getElementById("rotate").innerHTML = text;
-    console.log(alpha+" "+beta+" "+gamma);
+    text = "alpha: "+alpha+" beta: "+beta+" gamma: "+gamma;
+    document.getElementById("rotate").innerHTML = text;
+
 });
 
 
