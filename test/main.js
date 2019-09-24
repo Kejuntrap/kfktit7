@@ -512,6 +512,10 @@ window.addEventListener("deviceorientation", (dat) => {
     alpha = dat.alpha;  // z軸（表裏）まわりの回転の角度（反時計回りがプラス）
     beta  = dat.beta;   // x軸（左右）まわりの回転の角度（引き起こすとプラス）
     gamma = dat.gamma;  // y軸（上下）まわりの回転の角度（右に傾けるとプラス）
+
+    text = "alpha: "+alpha+" beta: "+beta+" gamma: "+gamma;
+    document.getElementById("rotate").innerHTML = text;
+
 });
 
 
@@ -524,9 +528,7 @@ var getinfo = function getinfo(position){
     geo_text += " 経度:" + position.coords.longitude;
     geo_text += " 高度:" + position.coords.altitude;
     geo_text += " 位置精度:" + position.coords.accuracy;  //誤差　周囲hoge m みたいな感じ
-    geo_text += " alpha回転: " + alpha;
-    geo_text += " beta回転: " + beta;
-    geo_text += " gamma回転: " + gamma;
+
 
     const now_lat = position.coords.latitude * Math.PI / 180.0;
     const now_lon = position.coords.longitude * Math.PI / 180.0;
