@@ -524,13 +524,13 @@ window.addEventListener("deviceorientation", (dat) => {
 
 
    text = alpha;
-   document.getElementById("rotate").innerHTML = text;
+   //document.getElementById("rotate").innerHTML = text;
 
 });
 
 
 function main() {
-   document.getElementById("inch").innerHTML = "横: " + dis_size.widthInch + " 縦: " + dis_size.heightInch;
+   //document.getElementById("inch").innerHTML = "横: " + dis_size.widthInch + " 縦: " + dis_size.heightInch;
    navigator.geolocation.watchPosition(getinfo);
 }
 
@@ -553,7 +553,7 @@ var getinfo = function getinfo(position) {
 
 
 
-   document.getElementById("content").innerHTML = geo_text;
+   //document.getElementById("content").innerHTML = geo_text;
 
    for (var i = 0; i < mount; i++) {
       const dif_lon = Math.abs(now_lon * 180.0 / Math.PI - mountdata[i].longitude) * Math.PI / 180.0;
