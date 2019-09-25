@@ -504,31 +504,41 @@ const mountdata = [
 const maxdist = 1000.0; //見える最大距離
 const mount = 100;  //山の数
 const radius = 6378.1; //km
-
+const mltp = 2;
 var dis_size;
-
+var lists = {};
 
 var alpha = 0, beta = 0, gamma = 0;             // ジャイロの値を入れる変数を3個用意
 
 window.addEventListener("deviceorientation", (dat) => {
-   alpha = dat.alpha;  // z軸（表裏）まわりの回転の角度（反時計回りがプラス）
-   beta = dat.beta;   // x軸（左右）まわりの回転の角度（引き起こすとプラス）
-   gamma = dat.gamma;  // y軸（上下）まわりの回転の角度（右に傾けるとプラス）
+   alpha = sisya(dat.alpha);  // z軸（表裏）まわりの回転の角度（反時計回りがプラス）
+   beta = sisya(dat.beta);   // x軸（左右）まわりの回転の角度（引き起こすとプラス）
+   gamma = sisya(dat.gamma);  // y軸（上下）まわりの回転の角度（右に傾けるとプラス）
 
    document.getElementById("rotate").innerHTML = text;
 
-
+   var canvas = document.getElementById('sample');
+   canvas.width = window.screen.width;
+   console.log(canvas.width);
 
 });
 
 
 var main = function main() {
    dis_size = deviceInchSize();
-   document.getElementById("inch").innerHTML = "横: " + dis_size.widthInch * 2.54 / window.devicePixelRatio + " 縦: " + dis_size.heightInch * 2.54 / window.devicePixelRatio;
+   document.getElementById("inch").innerHTML = "横: " + dis_size.widthInch + " 縦: " + dis_size.heightInch;
    navigator.geolocation.watchPosition(getinfo);
 }
 
 var getinfo = function getinfo(position) {
+
+   lists = {};
+
+   position.coords.longitude = sisya(position.coords.longitude);
+   position.coords.latitude = sisya(position.coords.latitude);
+   position.coords.altitude = sisya(position.coords.altitude);
+   position.coords.accuracy = sisya(position.coords.accuracy);
+
    var geo_text = "緯度:" + position.coords.latitude;
    geo_text += " 経度:" + position.coords.longitude;
    geo_text += " 高度:" + position.coords.altitude;
@@ -548,11 +558,10 @@ var getinfo = function getinfo(position) {
       var res = Math.acos(Math.sin(now_lat) * Math.sin(mountdata[i].latitude * Math.PI / 180.0) + Math.cos(now_lat) * Math.cos(mountdata[i].latitude * Math.PI / 180.0) * Math.cos(dif_lon));
       //console.log(radius * res +" "+ mountdata[i].name);
    }
+
 }
 
 window.onload = main;
-//setInterval(main, 10000);
-
 
 
 function windowWidthHeight() {
@@ -593,4 +602,8 @@ function deviceInchSize() {
       heightInch: heightInch,
       diagonalInch: diagonalInch
    }
+}
+
+function sisya(num) {
+   return Math.round(num * Math.pow(10, mltp)) / Math.pow(10, mltp);
 }
