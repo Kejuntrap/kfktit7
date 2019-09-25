@@ -517,24 +517,12 @@ window.addEventListener("deviceorientation", (dat) => {
 
    document.getElementById("rotate").innerHTML = text;
 
-   var canvas = document.getElementById('sample');
-   var ctx = canvas.getContext('2d');
-   canvas.width = window.screen.width;
-   console.log(canvas.width);
-
-   ctx.fillStyle = '#ccc';
-   ctx.strokeStyle = 'red';
-   ctx.rect(25, 25, 100, 100);
-   ctx.fill();
-   ctx.stroke();
-
-
 });
 
 
 var main = function main() {
    dis_size = deviceInchSize();
-   document.getElementById("inch").innerHTML = "横: " + dis_size.widthInch + " 縦: " + dis_size.heightInch;
+   document.getElementById("inch").innerHTML = "横: " + dis_size.widthInch * 2.54 + " 縦: " + dis_size.heightInch * 2.54;
    navigator.geolocation.watchPosition(getinfo);
 }
 
@@ -615,3 +603,22 @@ function deviceInchSize() {
 function sisya(num) {
    return Math.round(num * Math.pow(10, mltp)) / Math.pow(10, mltp);
 }
+
+
+function draw() {
+
+
+
+   var canvas = document.getElementById('sample');
+   var ctx = canvas.getContext('2d');
+   canvas.width = window.screen.width;
+   console.log(canvas.width);
+
+   ctx.fillStyle = '#ccc';
+   ctx.strokeStyle = 'red';
+   ctx.rect(25, 25, 100, 100);
+   ctx.fill();
+   ctx.stroke();
+}
+
+setInterval(draw, 1000);
