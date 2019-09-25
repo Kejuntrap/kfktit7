@@ -505,15 +505,7 @@ const maxdist = 1000.0; //見える最大距離
 const mount = 100;  //山の数
 const radius = 6378.1; //km
 
-const tate = window.screen.height / (window.devicePixelRatio * screen.deviceYDPI) * 2.54;
-const yoko = window.screen.width / (window.devicePixelRatio * screen.deviceXDPI) * 2.54;
-
-//console.log(tate, yoko);
-//console.log(window.devicePixelRatio);
-//console.log(document.getElementById('dpi').offsetWidth);
-
-
-
+var dis_size;
 
 
 var alpha = 0, beta = 0, gamma = 0;             // ジャイロの値を入れる変数を3個用意
@@ -525,10 +517,14 @@ window.addEventListener("deviceorientation", (dat) => {
 
    document.getElementById("rotate").innerHTML = text;
 
+
+
 });
 
 
 var main = function main() {
+   dis_size = deviceInchSize();
+   document.getElementById("inch").innerHTML = "横: " + dis_size.widthInch * 2.54 + " 縦: " + dis_size.heightInch * 2.54;
    navigator.geolocation.watchPosition(getinfo);
 }
 
@@ -542,12 +538,10 @@ var getinfo = function getinfo(position) {
    const now_lat = position.coords.latitude * Math.PI / 180.0;
    const now_lon = position.coords.longitude * Math.PI / 180.0;
 
-   var devicePixelRatio = window.devicePixelRatio || 1;
-   dpi_x = document.getElementById('dpi').offsetWidth * devicePixelRatio;
-   dpi_y = document.getElementById('dpi').offsetHeight * devicePixelRatio;
-   console.log(dpi_x, dpi_y);
 
-   document.getElementById("content").innerHTML = geo_text + " a" + dpi_x;
+
+
+   document.getElementById("content").innerHTML = geo_text;
 
    for (var i = 0; i < mount; i++) {
       const dif_lon = Math.abs(now_lon * 180.0 / Math.PI - mountdata[i].longitude) * Math.PI / 180.0;
@@ -558,3 +552,45 @@ var getinfo = function getinfo(position) {
 
 window.onload = main;
 //setInterval(main, 10000);
+
+
+
+function windowWidthHeight() {
+   var ratio;
+   window.devicePixelRatio ? ratio = window.devicePixelRatio : ratio = 1;
+   return {
+      windowWidth: window.innerWidth,
+      windowHeight: window.innerHeight,
+      devicePixelRatio: ratio
+   };
+}
+function deviceDpi() {
+   var POINTDPI = 96,
+      ratio = windowWidthHeight().devicePixelRatio,
+      width = windowWidthHeight().windowWidth,
+      coefficient,
+      logicalDpi,
+      estimatedActualDpi = logicalDpi * ratio;
+   ratio < 2 ? coefficient = -ratio : coefficient = ratio,
+      logicalDpi = (devicePixelRatio === 1) ?
+         (POINTDPI + Math.sqrt(Math.sqrt(windowWidthHeight().windowWidth)) * coefficient) :
+         (POINTDPI + (POINTDPI / ratio) + Math.sqrt(Math.sqrt(width)) * coefficient);
+   return {
+      logicalDpi: logicalDpi,
+      estimatedActualDpi: estimatedActualDpi
+   };
+}
+function deviceInchSize() {
+   var dpi = deviceDpi().logicalDpi,
+      width = windowWidthHeight().windowWidth,
+      height = windowWidthHeight().windowHeight;
+   widthInch = width / dpi,
+      heightInch = height / dpi,
+      diagonalInch = Math.sqrt(Math.pow(widthInch, 2) + Math.pow(heightInch, 2));
+
+   return {
+      widthInch: widthInch,
+      heightInch: heightInch,
+      diagonalInch: diagonalInch
+   }
+}
