@@ -518,8 +518,16 @@ window.addEventListener("deviceorientation", (dat) => {
    document.getElementById("rotate").innerHTML = text;
 
    var canvas = document.getElementById('sample');
+   var ctx = canvas.getContext('2d');
    canvas.width = window.screen.width;
    console.log(canvas.width);
+
+   ctx.fillStyle = '#ccc';
+   ctx.strokeStyle = 'red';
+   ctx.rect(25, 25, 100, 100);
+   ctx.fill();
+   ctx.stroke();
+
 
 });
 
@@ -598,9 +606,9 @@ function deviceInchSize() {
       diagonalInch = Math.sqrt(Math.pow(widthInch, 2) + Math.pow(heightInch, 2));
 
    return {
-      widthInch: widthInch,
-      heightInch: heightInch,
-      diagonalInch: diagonalInch
+      widthInch: widthInch / 2.5,
+      heightInch: heightInch / 2.5,
+      diagonalInch: diagonalInch / 2.5
    }
 }
 
