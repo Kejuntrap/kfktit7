@@ -506,8 +506,11 @@ const mount = 100;  //山の数
 const radius = 6378.1; //km
 const mltp = 2;
 var lists = [];
+const RAD = Math.PI / 180;	// 1°あたりのラジアン
 
 var alpha = 0, beta = 0, gamma = 0;             // ジャイロの値を入れる変数を3個用意
+
+var lati, longi;  //現在の緯度経度(deg)
 
 const dis_size = deviceInchSize();
 
@@ -543,6 +546,9 @@ var getinfo = function getinfo(position) {
    const now_lat = position.coords.latitude * Math.PI / 180.0;
    const now_lon = position.coords.longitude * Math.PI / 180.0;
 
+   lati = position.coords.latitude;
+   longi = position.coords.longitute;
+
 
 
 
@@ -553,7 +559,12 @@ var getinfo = function getinfo(position) {
       var res = Math.acos(Math.sin(now_lat) * Math.sin(mountdata[i].latitude * Math.PI / 180.0) + Math.cos(now_lat) * Math.cos(mountdata[i].latitude * Math.PI / 180.0) * Math.cos(dif_lon));
       //console.log(radius * res +" "+ mountdata[i].name);
       if (res * radius < maxdist) {
-         lists.push(res * radius + " " + mountdata[i].name);
+         lists.push(
+            JSON.parse("{ \"name\": \"" + mountdata[i].name + "\"," +
+               "\"latitude\": " + mountdata[i].latitude + "," +
+               "\"longitude\": " + mountdata[i].longitude + "," +
+               "\"distance\": " + res * radius + "}")
+         );
       }
    }
    console.log(lists);
@@ -632,12 +643,16 @@ var cnvs = function draw() {
       }
    }
 
-   /*for (var i = 0; i < lists.length; i++) {
-      ctx.moveTo(-sabun + i * onedeg, 50);
-      ctx.lineTo(-sabun + i * onedeg, 300);
+
+   for (var i = 0; i < lists.length; i++) {
+      var azim = Math.fmod(azimuth(lati, longi, lists[i].latitude, lists[i].longitude) + 360, 360);
+
+      ctx.moveTo(-sabun + canvas.width / 2 + onedeg * (target - azim), 150);
+      ctx.lineTo(-sabun + canvas.width / 2 + onedeg * (target - azim), 300);
+      ctx.font = 100 * Math.exp(Math.E, lists[i].distance / maxdist) + "px Arial";
+      ctx.fillText(lists[i].name, -sabun + canvas.width / 2 + onedeg * (target - azim), 20, 120);
       //ctx.fillText(lists[i].name, -sabun + i * onedeg, 10, 200);
    }
-   */
 
    //ctx.fillText(diff + " " + sabun, 100, 100, 200);
    ctx.fill();
@@ -647,7 +662,44 @@ var cnvs = function draw() {
 }
 
 
+function distance(lat1, lon1, lat2, lon2) {
+   // 度をラジアンに変換
+   lat1 *= RAD;
+   lon1 *= RAD;
+   lat2 *= RAD;
+   lon2 *= RAD;
 
+   var lat_c = (lat1 + lat2) / 2;					// 緯度の中心値
+   var dx = R_EARTH * (lon2 - lon1) * Math.cos(lat_c);
+   var dy = R_EARTH * (lat2 - lat1);
+
+   return Math.sqrt(dx * dx + dy * dy);
+}
+
+// 2点間の方位角を求める関数
+function azimuth(lat1, lon1, lat2, lon2) {
+   // 度をラジアンに変換
+   lat1 *= RAD;
+   lon1 *= RAD;
+   lat2 *= RAD;
+   lon2 *= RAD;
+
+   var lat_c = (lat1 + lat2) / 2;					// 緯度の中心値
+   var dx = radius * 1000 * (lon2 - lon1) * Math.cos(lat_c);
+   var dy = radius * 1000 * (lat2 - lat1);
+
+   if (dx == 0 && dy == 0) {
+      return 0;	// dx, dyともに0のときは強制的に0とする。
+   }
+   else {
+      return Math.atan2(dy, dx) / RAD;	// 結果は度単位で返す
+   }
+}
+
+//https://www.logical-arts.jp/wp-content/uploads/distance_and_azimuth.js
+
+
+Math.fmod = function (a, b) { return Number((a - (Math.floor(a / b) * b)).toPrecision(8)); };
 
 window.onload = function () {
    main();
