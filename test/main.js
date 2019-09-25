@@ -508,8 +508,12 @@ const radius = 6378.1; //km
 const tate = window.screen.height / (window.devicePixelRatio * screen.deviceYDPI) * 2.54;
 const yoko = window.screen.width / (window.devicePixelRatio * screen.deviceXDPI) * 2.54;
 
-console.log(tate, yoko);
-console.log(window.devicePixelRatio);
+//console.log(tate, yoko);
+//console.log(window.devicePixelRatio);
+//console.log(document.getElementById('dpi').offsetWidth);
+
+
+
 
 
 var alpha = 0, beta = 0, gamma = 0;             // ジャイロの値を入れる変数を3個用意
@@ -519,8 +523,6 @@ window.addEventListener("deviceorientation", (dat) => {
    beta = dat.beta;   // x軸（左右）まわりの回転の角度（引き起こすとプラス）
    gamma = dat.gamma;  // y軸（上下）まわりの回転の角度（右に傾けるとプラス）
 
-   text = "alpha: " + alpha + " beta: " + beta + " gamma: " + gamma;
-   text += "たて" + tate + " よこ" + yoko;
    document.getElementById("rotate").innerHTML = text;
 
 });
@@ -539,7 +541,13 @@ var getinfo = function getinfo(position) {
 
    const now_lat = position.coords.latitude * Math.PI / 180.0;
    const now_lon = position.coords.longitude * Math.PI / 180.0;
-   document.getElementById("content").innerHTML = geo_text;
+
+   var devicePixelRatio = window.devicePixelRatio || 1;
+   dpi_x = document.getElementById('dpi').offsetWidth * devicePixelRatio;
+   dpi_y = document.getElementById('dpi').offsetHeight * devicePixelRatio;
+   console.log(dpi_x, dpi_y);
+
+   document.getElementById("content").innerHTML = geo_text + " a" + dpi_x;
 
    for (var i = 0; i < mount; i++) {
       const dif_lon = Math.abs(now_lon * 180.0 / Math.PI - mountdata[i].longitude) * Math.PI / 180.0;
