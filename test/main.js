@@ -511,9 +511,9 @@ var lists = {};
 var alpha = 0, beta = 0, gamma = 0;             // ジャイロの値を入れる変数を3個用意
 
 window.addEventListener("deviceorientation", (dat) => {
-   alpha = sisya(dat.alpha);  // z軸（表裏）まわりの回転の角度（反時計回りがプラス）
-   beta = sisya(dat.beta);   // x軸（左右）まわりの回転の角度（引き起こすとプラス）
-   gamma = sisya(dat.gamma);  // y軸（上下）まわりの回転の角度（右に傾けるとプラス）
+   alpha = dat.alpha;  // z軸（表裏）まわりの回転の角度（反時計回りがプラス）
+   beta = dat.beta;   // x軸（左右）まわりの回転の角度（引き起こすとプラス）
+   gamma = dat.gamma;  // y軸（上下）まわりの回転の角度（右に傾けるとプラス）
 
    document.getElementById("rotate").innerHTML = text;
 
@@ -599,11 +599,6 @@ function deviceInchSize() {
       diagonalInch: diagonalInch
    }
 }
-
-function sisya(num) {
-   return Math.round(num * Math.pow(10, mltp)) / Math.pow(10, mltp);
-}
-
 
 var draw = function draw() {
    var canvas = document.getElementById('sample');
