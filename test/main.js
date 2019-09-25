@@ -524,7 +524,7 @@ window.addEventListener("deviceorientation", (dat) => {
 
 var main = function main() {
    dis_size = deviceInchSize();
-   document.getElementById("inch").innerHTML = "横: " + dis_size.widthInch * 2.54 + " 縦: " + dis_size.heightInch * 2.54;
+   document.getElementById("inch").innerHTML = "横: " + dis_size.widthInch + " 縦: " + dis_size.heightInch;
    navigator.geolocation.watchPosition(getinfo);
 }
 
@@ -597,6 +597,7 @@ function deviceInchSize() {
    }
 }
 
+var k = 0;
 var draw = function draw() {
    var canvas = document.getElementById('sample');
    var ctx = canvas.getContext('2d');
@@ -609,6 +610,8 @@ var draw = function draw() {
    ctx.fill();
    ctx.stroke();
 
+   k += 5;
+
 }
 
-setInterval(draw, 1000);
+setInterval(draw, 16);
