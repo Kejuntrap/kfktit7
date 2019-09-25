@@ -501,7 +501,7 @@ const mountdata = [
    }
 ];
 
-const maxdist = 1000.0; //見える最大距離
+const maxdist = 120.0; //見える最大距離
 const mount = 100;  //山の数
 const radius = 6378.1; //km
 const mltp = 2;
@@ -530,7 +530,7 @@ function main() {
 
 var getinfo = function getinfo(position) {
 
-   lists = {};
+   lists = [];
 
    var geo_text = "緯度:" + position.coords.latitude;
    geo_text += " 経度:" + position.coords.longitude;
@@ -550,7 +550,11 @@ var getinfo = function getinfo(position) {
       const dif_lon = Math.abs(now_lon * 180.0 / Math.PI - mountdata[i].longitude) * Math.PI / 180.0;
       var res = Math.acos(Math.sin(now_lat) * Math.sin(mountdata[i].latitude * Math.PI / 180.0) + Math.cos(now_lat) * Math.cos(mountdata[i].latitude * Math.PI / 180.0) * Math.cos(dif_lon));
       //console.log(radius * res +" "+ mountdata[i].name);
+      if (res * radius < maxdist) {
+         lists.push(res * radius + " " + mountdata[i].name);
+      }
    }
+   console.log(lists);
 
 }
 
@@ -597,24 +601,19 @@ function deviceInchSize() {
 }
 
 var k = 0;
-function draw() {
+var cnvs = function draw() {
    var canvas = document.getElementById('sample');
    var ctx = canvas.getContext('2d');
    canvas.width = window.screen.width;
-   console.log(canvas.width);
+   //console.log(canvas.width);
 
    ctx.fillStyle = '#ccc';
    ctx.strokeStyle = 'red';
-   ctx.rect(25 + k, 25, 100, 100);
-   ctx.fillText(canvas.width, 0, 0);
+   ctx.fillText("a", 100, 100, 200);
    ctx.fill();
    ctx.stroke();
 
 
-   k += 5;
-   k %= 2880;
-
-   draw();
 }
 
 
@@ -623,3 +622,5 @@ function draw() {
 window.onload = function () {
    main();
 };
+
+setInterval(cnvs, 100);
