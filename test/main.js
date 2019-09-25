@@ -610,9 +610,9 @@ var cnvs = function draw() {
    ctx.fillStyle = '#000000';
    ctx.strokeStyle = 'red';
 
-   var diff = alpha - Math.floor(alpha) * Math.PI / 180;
+   var diff = (alpha - Math.floor(alpha)) * Math.PI / 180;
 
-   var sabun = diff * 60 / dis_size.widthInch;
+   var sabun = Math.sin(diff) * 60 / dis_size.widthInch;
 
    ctx.fillText(diff + " " + sabun, 100, 100, 200);
    ctx.fill();
