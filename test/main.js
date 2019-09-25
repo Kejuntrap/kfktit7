@@ -647,10 +647,12 @@ var cnvs = function draw() {
    for (var i = 0; i < lists.length; i++) {
       var azim = azimuth(lati, longi, lists[i].latitude, lists[i].longitude);
       //console.log(azim, longi, lati);
-      ctx.moveTo(-sabun + canvas.width / 2 + onedeg * (target - azim), 150);
-      ctx.lineTo(-sabun + canvas.width / 2 + onedeg * (target - azim), 300);
+
+      var position = (azim - alpha + 360 - Math.ceil(azim - alpha + 360, 360) * 360) * onedeg;
+      ctx.moveTo(canvas.width / 2 + position, 150);
+      ctx.lineTo(canvas.width / 2 + position, 300);
       ctx.font = 100 * Math.exp(Math.E, lists[i].distance / maxdist) + "px Arial";
-      ctx.fillText(lists[i].name, -sabun + canvas.width / 2 + onedeg * (target - azim), 20, 120);
+      ctx.fillText(lists[i].name, canvas.width / 2 + position, 20, 120);
       //ctx.fillText(lists[i].name, -sabun + i * onedeg, 10, 200);
    }
 
