@@ -644,4 +644,4 @@ window.onload = function () {
    main();
 };
 
-setInterval(cnvs, 100);
+setInterval(cnvs, 16);
