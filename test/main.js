@@ -501,7 +501,7 @@ const mountdata = [
    }
 ];
 
-const maxdist = 120.0; //見える最大距離
+const maxdist = 500.0; //見える最大距離
 const mount = 100;  //山の数
 const radius = 6378.1; //km
 const mltp = 2;
