@@ -606,11 +606,12 @@ var draw = function draw() {
 
    ctx.fillStyle = '#ccc';
    ctx.strokeStyle = 'red';
-   ctx.rect(25, 25, 100, 100);
+   ctx.rect(25 + k, 25, 100, 100);
    ctx.fill();
    ctx.stroke();
 
    k += 5;
+   k %= 2880;
 
 }
 
