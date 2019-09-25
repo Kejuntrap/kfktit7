@@ -511,6 +511,8 @@ var alpha = 0, beta = 0, gamma = 0;             // ジャイロの値を入れ�
 
 const dis_size = deviceInchSize();
 
+var canvas, ctx;
+
 window.addEventListener("deviceorientation", (dat) => {
    alpha = dat.alpha;  // z軸（表裏）まわりの回転の角度（反時計回りがプラス）
    beta = dat.beta;   // x軸（左右）まわりの回転の角度（引き起こすとプラス）
@@ -602,9 +604,9 @@ function deviceInchSize() {
 
 var k = 0;
 var cnvs = function draw() {
-   var canvas = document.getElementById('sample');
-   var ctx = canvas.getContext('2d');
-   canvas.width = window.screen.width;
+   canvas = document.getElementById('sample');
+   ctx = canvas.getContext('2d');
+   canvas.width = window.screen.width * 2;
    //console.log(canvas.width);
 
    ctx.fillStyle = '#000000';
@@ -612,7 +614,7 @@ var cnvs = function draw() {
 
    var diff = (alpha - Math.floor(alpha)) * Math.PI / 180;
 
-   var sabun = Math.sin(diff) * 60 / dis_size.widthInch;
+   var sabun = Math.sin(diff) * 60 / dis_size.widthInch * canvas.width;
 
    ctx.fillText(diff + " " + sabun, 100, 100, 200);
    ctx.fill();
