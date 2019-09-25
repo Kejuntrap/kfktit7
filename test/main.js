@@ -621,14 +621,14 @@ var cnvs = function draw() {
    ctx.font = "30px Arial";
    for (var i = -10; i <= 10; i += 2) {
       if (target % 2 == 0) {
-         ctx.moveTo(-sabun + i * onedeg + canvas.width / 2, 70);
-         ctx.lineTo(-sabun + i * onedeg + canvas.width / 2, 400);
-         ctx.fillText((target + i + 360) % 360, -sabun + i * onedeg + canvas.width / 2, 30, 200);
+         ctx.moveTo(-sabun + i * onedeg + canvas.width / 2, 600);
+         ctx.lineTo(-sabun + i * onedeg + canvas.width / 2, 650);
+         ctx.fillText((target + i + 360) % 360, -sabun + i * onedeg + canvas.width / 2 - 20, 680, 120);
       }
       else if (target % 2 == 1) {
-         ctx.moveTo(-sabun + (i + 1) * onedeg + canvas.width / 2, 70);
-         ctx.lineTo(-sabun + (i + 1) * onedeg + canvas.width / 2, 400);
-         ctx.fillText((target + (i + 1) + 360) % 360, -sabun + (i + 1) * onedeg + canvas.width / 2, 30, 200);
+         ctx.moveTo(-sabun + (i + 1) * onedeg + canvas.width / 2, 600);
+         ctx.lineTo(-sabun + (i + 1) * onedeg + canvas.width / 2, 650);
+         ctx.fillText((target + (i + 1) + 360) % 360, -sabun + (i + 1) * onedeg + canvas.width / 2 - 20, 680, 120);
       }
    }
 
