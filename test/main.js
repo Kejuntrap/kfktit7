@@ -606,9 +606,6 @@ function sisya(num) {
 
 
 function draw() {
-
-
-
    var canvas = document.getElementById('sample');
    var ctx = canvas.getContext('2d');
    canvas.width = window.screen.width;
