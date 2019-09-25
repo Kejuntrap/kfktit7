@@ -530,11 +530,6 @@ var getinfo = function getinfo(position) {
 
    lists = {};
 
-   position.coords.longitude = sisya(position.coords.longitude);
-   position.coords.latitude = sisya(position.coords.latitude);
-   position.coords.altitude = sisya(position.coords.altitude);
-   position.coords.accuracy = sisya(position.coords.accuracy);
-
    var geo_text = "緯度:" + position.coords.latitude;
    geo_text += " 経度:" + position.coords.longitude;
    geo_text += " 高度:" + position.coords.altitude;
