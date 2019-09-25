@@ -568,7 +568,7 @@ var getinfo = function getinfo(position) {
          );
       }
    }
-   console.log(lists);
+   //console.log(lists);
 
 }
 
@@ -652,7 +652,7 @@ var cnvs = function draw() {
       ctx.moveTo(canvas.width / 2 + position, 250);
       ctx.lineTo(canvas.width / 2 + position, 500);
       ctx.font = 100 * Math.pow(Math.E, -2 * (lists[i].distance / maxdist)) + "px Arial";
-      console.log(100 * Math.pow(Math.E, -2 * (lists[i].distance / maxdist)));
+      //console.log(100 * Math.pow(Math.E, -2 * (lists[i].distance / maxdist)));
       ctx.fillText(lists[i].name, canvas.width / 2 + position, 80, 1000);
       //ctx.fillText(lists[i].name, -sabun + i * onedeg, 10, 200);
    }
