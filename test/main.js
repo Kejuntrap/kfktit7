@@ -598,7 +598,7 @@ function deviceInchSize() {
 }
 
 var k = 0;
-var draw = function draw() {
+function draw() {
    var canvas = document.getElementById('sample');
    var ctx = canvas.getContext('2d');
    canvas.width = window.screen.width;
@@ -615,4 +615,4 @@ var draw = function draw() {
 
 }
 
-setInterval(draw, 16);
+setInterval("draw()", 16);
