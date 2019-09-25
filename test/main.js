@@ -510,7 +510,8 @@ const RAD = Math.PI / 180;	// 1°あたりのラジアン
 
 var alpha = 0, beta = 0, gamma = 0;             // ジャイロの値を入れる変数を3個用意
 
-var lati, longi;  //現在の緯度経度(deg)
+var lati = -1;
+var longi = -1;  //現在の緯度経度(deg)
 
 const dis_size = deviceInchSize();
 
@@ -547,7 +548,7 @@ var getinfo = function getinfo(position) {
    const now_lon = position.coords.longitude * Math.PI / 180.0;
 
    lati = position.coords.latitude;
-   longi = position.coords.longitute;
+   longi = position.coords.longitude;
 
 
 
@@ -643,16 +644,16 @@ var cnvs = function draw() {
       }
    }
 
-
    for (var i = 0; i < lists.length; i++) {
-      var azim = Math.fmod(azimuth(lati, longi, lists[i].latitude, lists[i].longitude) + 360, 360);
-
+      var azim = azimuth(lati, longi, lists[i].latitude, lists[i].longitude);
+      //console.log(azim, longi, lati);
       ctx.moveTo(-sabun + canvas.width / 2 + onedeg * (target - azim), 150);
       ctx.lineTo(-sabun + canvas.width / 2 + onedeg * (target - azim), 300);
       ctx.font = 100 * Math.exp(Math.E, lists[i].distance / maxdist) + "px Arial";
       ctx.fillText(lists[i].name, -sabun + canvas.width / 2 + onedeg * (target - azim), 20, 120);
       //ctx.fillText(lists[i].name, -sabun + i * onedeg, 10, 200);
    }
+
 
    //ctx.fillText(diff + " " + sabun, 100, 100, 200);
    ctx.fill();
@@ -661,20 +662,6 @@ var cnvs = function draw() {
 
 }
 
-
-function distance(lat1, lon1, lat2, lon2) {
-   // 度をラジアンに変換
-   lat1 *= RAD;
-   lon1 *= RAD;
-   lat2 *= RAD;
-   lon2 *= RAD;
-
-   var lat_c = (lat1 + lat2) / 2;					// 緯度の中心値
-   var dx = R_EARTH * (lon2 - lon1) * Math.cos(lat_c);
-   var dy = R_EARTH * (lat2 - lat1);
-
-   return Math.sqrt(dx * dx + dy * dy);
-}
 
 // 2点間の方位角を求める関数
 function azimuth(lat1, lon1, lat2, lon2) {
@@ -698,8 +685,6 @@ function azimuth(lat1, lon1, lat2, lon2) {
 
 //https://www.logical-arts.jp/wp-content/uploads/distance_and_azimuth.js
 
-
-Math.fmod = function (a, b) { return Number((a - (Math.floor(a / b) * b)).toPrecision(8)); };
 
 window.onload = function () {
    main();
