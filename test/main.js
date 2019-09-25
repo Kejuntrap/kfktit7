@@ -617,9 +617,10 @@ var cnvs = function draw() {
    var sabun = Math.sin(diff) * 60 / dis_size.widthInch * canvas.width;
    var target = Math.ceil(alpha);
    var onedeg = Math.sin(Math.PI / 180) * dis_size.widthInch * canvas.width;
-   for (var i = -10; i <= 10; i++) {
+   for (var i = -10; i <= 10; i += 2) {
       ctx.moveTo(-sabun + i * onedeg, 50);
       ctx.lineTo(-sabun + i * onedeg, 300);
+      ctx.fillText((target + i) % 360, -sabun + i * onedeg, 10, 200);
    }
 
    //ctx.fillText(diff + " " + sabun, 100, 100, 200);
