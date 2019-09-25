@@ -505,7 +505,6 @@ const maxdist = 120.0; //見える最大距離
 const mount = 100;  //山の数
 const radius = 6378.1; //km
 const mltp = 2;
-var dis_size;
 var lists = {};
 
 var alpha = 0, beta = 0, gamma = 0;             // ジャイロの値を入れる変数を3個用意
