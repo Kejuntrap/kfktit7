@@ -598,7 +598,7 @@ function deviceInchSize() {
 var draw = function draw() {
    var canvas = document.getElementById('sample');
    var ctx = canvas.getContext('2d');
-   canvas.width = window.screen.width;
+   canvas.width = window.screen.width * window.screen.devicePixelRatio;
    console.log(canvas.width);
 
    ctx.fillStyle = '#ccc';
