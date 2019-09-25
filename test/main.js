@@ -505,7 +505,7 @@ const maxdist = 120.0; //見える最大距離
 const mount = 100;  //山の数
 const radius = 6378.1; //km
 const mltp = 2;
-var lists = {};
+var lists = [];
 
 var alpha = 0, beta = 0, gamma = 0;             // ジャイロの値を入れる変数を3個用意
 
@@ -618,10 +618,17 @@ var cnvs = function draw() {
    var target = Math.ceil(alpha);
    var onedeg = Math.sin(Math.PI / 180) * dis_size.widthInch * canvas.width;
    for (var i = -10; i <= 10; i += 2) {
+      ctx.moveTo(-sabun + i * onedeg + canvas.width / 2, 50);
+      ctx.lineTo(-sabun + i * onedeg + canvas.width / 2, 300);
+      ctx.fillText((target + i) % 360, -sabun + i * onedeg + canvas.width / 2, 30, 200);
+   }
+
+   /*for (var i = 0; i < lists.length; i++) {
       ctx.moveTo(-sabun + i * onedeg, 50);
       ctx.lineTo(-sabun + i * onedeg, 300);
-      ctx.fillText((target + i) % 360, -sabun + i * onedeg, 10, 200);
+      //ctx.fillText(lists[i].name, -sabun + i * onedeg, 10, 200);
    }
+   */
 
    //ctx.fillText(diff + " " + sabun, 100, 100, 200);
    ctx.fill();
