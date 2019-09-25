@@ -606,7 +606,8 @@ var k = 0;
 var cnvs = function draw() {
    canvas = document.getElementById('sample');
    ctx = canvas.getContext('2d');
-   canvas.width = window.screen.width * 2;
+   canvas.width = window.screen.width * 2.5;
+   canvas.height = 720;
    //console.log(canvas.width);
 
    ctx.fillStyle = '#000000';
@@ -617,15 +618,16 @@ var cnvs = function draw() {
    var sabun = Math.sin(diff) * 60 / dis_size.widthInch * canvas.width;
    var target = Math.ceil(alpha);
    var onedeg = Math.sin(Math.PI / 180) * dis_size.widthInch * canvas.width;
+   ctx.font = "30px Arial";
    for (var i = -10; i <= 10; i += 2) {
       if (target % 2 == 0) {
-         ctx.moveTo(-sabun + i * onedeg + canvas.width / 2, 50);
-         ctx.lineTo(-sabun + i * onedeg + canvas.width / 2, 300);
+         ctx.moveTo(-sabun + i * onedeg + canvas.width / 2, 70);
+         ctx.lineTo(-sabun + i * onedeg + canvas.width / 2, 400);
          ctx.fillText((target + i + 360) % 360, -sabun + i * onedeg + canvas.width / 2, 30, 200);
       }
       else if (target % 2 == 1) {
-         ctx.moveTo(-sabun + (i + 1) * onedeg + canvas.width / 2, 50);
-         ctx.lineTo(-sabun + (i + 1) * onedeg + canvas.width / 2, 300);
+         ctx.moveTo(-sabun + (i + 1) * onedeg + canvas.width / 2, 70);
+         ctx.lineTo(-sabun + (i + 1) * onedeg + canvas.width / 2, 400);
          ctx.fillText((target + (i + 1) + 360) % 360, -sabun + (i + 1) * onedeg + canvas.width / 2, 30, 200);
       }
    }
