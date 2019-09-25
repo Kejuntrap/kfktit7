@@ -505,8 +505,8 @@ const maxdist = 1000.0; //見える最大距離
 const mount = 100;  //山の数
 const radius = 6378.1; //km
 
-const tate = window.screen.height / window.devicePixelRatio * 2.54;
-const yoko = window.screen.width / window.devicePixelRatio * 2.54;
+const tate = window.screen.height / (window.devicePixelRatio * window.screen.systemYDPI) * 2.54;
+const yoko = window.screen.width / (window.devicePixelRatio * window.screen.systemYDPI) * 2.54;
 
 console.log(tate, yoko);
 console.log(window.devicePixelRatio);
