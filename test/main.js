@@ -651,7 +651,7 @@ var cnvs = function draw() {
       var position = (azim - alpha + 360 - Math.ceil(azim - alpha + 360, 360) * 360) * onedeg;
       ctx.moveTo(canvas.width / 2 + position, 250);
       ctx.lineTo(canvas.width / 2 + position, 500);
-      ctx.font = 100 * Math.exp(Math.E, -lists[i].distance / maxdist) + "px Arial";
+      ctx.font = "40px Arial";
       ctx.fillText(lists[i].name, canvas.width / 2 + position, 80, 120);
       //ctx.fillText(lists[i].name, -sabun + i * onedeg, 10, 200);
    }
