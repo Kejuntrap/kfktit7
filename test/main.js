@@ -609,6 +609,7 @@ function draw() {
    ctx.rect(25 + k, 25, 100, 100);
    ctx.fill();
    ctx.stroke();
+   fillText(canvas.width, 0, 0)
 
    k += 5;
    k %= 2880;
