@@ -557,7 +557,7 @@ window.onload = main;
 
 function windowWidthHeight() {
    var ratio;
-   window.devicePixelRatio ? ratio = window.devicePixelRatio : ratio = 1;
+   window.devicePixelRatio ? ratio = window.devicePixelRatio : ratio = 2;
    return {
       windowWidth: window.innerWidth,
       windowHeight: window.innerHeight,
@@ -598,7 +598,7 @@ function deviceInchSize() {
 var draw = function draw() {
    var canvas = document.getElementById('sample');
    var ctx = canvas.getContext('2d');
-   canvas.width = window.screen.width * window.screen.devicePixelRatio;
+   canvas.width = window.screen.width;
    console.log(canvas.width);
 
    ctx.fillStyle = '#ccc';
