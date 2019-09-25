@@ -659,8 +659,7 @@ var cnvs = function draw() {
 
 
    //ctx.fillText(diff + " " + sabun, 100, 100, 200);
-   ctx.fill();
-   ctx.stroke();
+   //ctx.fill();
 
 
 }
