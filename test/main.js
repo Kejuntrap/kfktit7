@@ -655,9 +655,10 @@ var cnvs = function draw() {
       //console.log(100 * Math.pow(Math.E, -2 * (lists[i].distance / maxdist)));
       ctx.fillText(lists[i].name, canvas.width / 2 + position, 80, 1000);
       //ctx.fillText(lists[i].name, -sabun + i * onedeg, 10, 200);
+      ctx.stroke();
+      ctx.fill();
    }
-   ctx.stroke();
-   ctx.fill();
+
 
 
 
