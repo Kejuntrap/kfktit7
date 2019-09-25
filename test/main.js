@@ -604,8 +604,9 @@ function sisya(num) {
    return Math.round(num * Math.pow(10, mltp)) / Math.pow(10, mltp);
 }
 
+var k = 5;
 
-function draw() {
+var draw = function draw() {
    var canvas = document.getElementById('sample');
    var ctx = canvas.getContext('2d');
    canvas.width = window.screen.width;
@@ -613,9 +614,11 @@ function draw() {
 
    ctx.fillStyle = '#ccc';
    ctx.strokeStyle = 'red';
-   ctx.rect(25, 25, 100, 100);
+   ctx.rect(25 + k, 25, 100, 100);
    ctx.fill();
    ctx.stroke();
+   k += 5;
+
 }
 
 setInterval(draw, 1000);
