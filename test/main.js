@@ -656,6 +656,9 @@ var cnvs = function draw() {
       ctx.fillText(lists[i].name, canvas.width / 2 + position, 80, 1000);
       //ctx.fillText(lists[i].name, -sabun + i * onedeg, 10, 200);
    }
+   ctx.stroke();
+   ctx.fill();
+
 
 
    //ctx.fillText(diff + " " + sabun, 100, 100, 200);
