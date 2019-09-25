@@ -594,9 +594,9 @@ function deviceInchSize() {
       diagonalInch = Math.sqrt(Math.pow(widthInch, 2) + Math.pow(heightInch, 2));
 
    return {
-      widthInch: widthInch / 2.5,
-      heightInch: heightInch / 2.5,
-      diagonalInch: diagonalInch / 2.5
+      widthInch: widthInch,
+      heightInch: heightInch,
+      diagonalInch: diagonalInch
    }
 }
 
@@ -604,7 +604,6 @@ function sisya(num) {
    return Math.round(num * Math.pow(10, mltp)) / Math.pow(10, mltp);
 }
 
-var k = 5;
 
 var draw = function draw() {
    var canvas = document.getElementById('sample');
@@ -614,10 +613,9 @@ var draw = function draw() {
 
    ctx.fillStyle = '#ccc';
    ctx.strokeStyle = 'red';
-   ctx.rect(25 + k, 25, 100, 100);
+   ctx.rect(25, 25, 100, 100);
    ctx.fill();
    ctx.stroke();
-   k += 5;
 
 }
 
