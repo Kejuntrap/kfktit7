@@ -510,6 +510,8 @@ var lists = {};
 
 var alpha = 0, beta = 0, gamma = 0;             // ジャイロの値を入れる変数を3個用意
 
+const dis_size = deviceInchSize();
+
 window.addEventListener("deviceorientation", (dat) => {
    alpha = dat.alpha;  // z軸（表裏）まわりの回転の角度（反時計回りがプラス）
    beta = dat.beta;   // x軸（左右）まわりの回転の角度（引き起こすとプラス）
@@ -523,7 +525,6 @@ window.addEventListener("deviceorientation", (dat) => {
 
 
 function main() {
-   dis_size = deviceInchSize();
    document.getElementById("inch").innerHTML = "横: " + dis_size.widthInch + " 縦: " + dis_size.heightInch;
    navigator.geolocation.watchPosition(getinfo);
 }
@@ -607,9 +608,14 @@ var cnvs = function draw() {
    canvas.width = window.screen.width;
    //console.log(canvas.width);
 
-   ctx.fillStyle = '#ccc';
+   ctx.fillStyle = '#000000';
    ctx.strokeStyle = 'red';
-   ctx.fillText("a", 100, 100, 200);
+
+   var diff = alpha - Math.floor(alpha) * Math.PI / 180;
+
+   var sabun = diff * 60 / dis_size.widthInch;
+
+   ctx.fillText(diff + " " + sabun, 100, 100, 200);
    ctx.fill();
    ctx.stroke();
 
