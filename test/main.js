@@ -613,6 +613,6 @@ function draw() {
    k += 5;
    k %= 2880;
 
+   draw();
 }
 
-setInterval("draw()", 16);
