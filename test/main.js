@@ -524,7 +524,7 @@ window.addEventListener("deviceorientation", (dat) => {
 
 var main = function main() {
    dis_size = deviceInchSize();
-   document.getElementById("inch").innerHTML = "横: " + dis_size.widthInch * 2.54 + " 縦: " + dis_size.heightInch * 2.54;
+   document.getElementById("inch").innerHTML = "横: " + dis_size.widthInch * 2.54 / window.devicePixelRatio + " 縦: " + dis_size.heightInch * 2.54 / window.devicePixelRatio;
    navigator.geolocation.watchPosition(getinfo);
 }
 
