@@ -610,7 +610,7 @@ var cnvs = function draw() {
    //console.log(canvas.width);
 
    ctx.fillStyle = '#000000';
-   ctx.strokeStyle = 'red';
+   ctx.strokeStyle = 'black';
 
    var diff = (alpha - Math.floor(alpha)) * Math.PI / 180;
 
@@ -618,9 +618,16 @@ var cnvs = function draw() {
    var target = Math.ceil(alpha);
    var onedeg = Math.sin(Math.PI / 180) * dis_size.widthInch * canvas.width;
    for (var i = -10; i <= 10; i += 2) {
-      ctx.moveTo(-sabun + i * onedeg + canvas.width / 2, 50);
-      ctx.lineTo(-sabun + i * onedeg + canvas.width / 2, 300);
-      ctx.fillText((target + i) % 360, -sabun + i * onedeg + canvas.width / 2, 30, 200);
+      if (taeget % 2 == 0) {
+         ctx.moveTo(-sabun + i * onedeg + canvas.width / 2, 50);
+         ctx.lineTo(-sabun + i * onedeg + canvas.width / 2, 300);
+         ctx.fillText((target + i + 360) % 360, -sabun + i * onedeg + canvas.width / 2, 30, 200);
+      }
+      else if (taeget % 2 == 1) {
+         ctx.moveTo(-sabun + (i + 1) * onedeg + canvas.width / 2, 50);
+         ctx.lineTo(-sabun + (i + 1) * onedeg + canvas.width / 2, 300);
+         ctx.fillText((target + (i + 1) + 360) % 360, -sabun + (i + 1) * onedeg + canvas.width / 2, 30, 200);
+      }
    }
 
    /*for (var i = 0; i < lists.length; i++) {
