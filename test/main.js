@@ -658,14 +658,6 @@ var cnvs = function draw() {
       ctx.stroke();
       ctx.fill();
    }
-
-
-
-
-   //ctx.fillText(diff + " " + sabun, 100, 100, 200);
-   //ctx.fill();
-
-
 }
 
 
@@ -696,4 +688,7 @@ window.onload = function () {
    main();
 };
 
-setInterval(cnvs, 16);
+setInterval(cnvs, 16);     //描写
+
+
+// http://www4.airnet.ne.jp/hasikun/webtech/html5api/html5api_01.html
