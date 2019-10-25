@@ -127,14 +127,14 @@ var getinfo = function getinfo(position) {      //定期的に位置情報をと
 
 
    for (var i = 0; i < mount; i++) {
-      const dif_lon = Math.abs(now_lon * 180.0 / Math.PI - Meguro[i].longitude) * Math.PI / 180.0;
-      var res = Math.acos(Math.sin(now_lat) * Math.sin(Meguro[i].latitude * Math.PI / 180.0) + Math.cos(now_lat) * Math.cos(Meguro[i].latitude * Math.PI / 180.0) * Math.cos(dif_lon));
+      const dif_lon = Math.abs(now_lon * 180.0 / Math.PI - Meguro[i].Longitude) * Math.PI / 180.0;
+      var res = Math.acos(Math.sin(now_lat) * Math.sin(Meguro[i].Latitude * Math.PI / 180.0) + Math.cos(now_lat) * Math.cos(Meguro[i].Latitude * Math.PI / 180.0) * Math.cos(dif_lon));
       //console.log(radius * res +" "+ Meguro[i].name);
       if (res * radius < maxdist) {
          lists.push(
-            JSON.parse("{ \"name\": \"" + Meguro[i].name + "\"," +
-               "\"latitude\": " + Meguro[i].latitude + "," +
-               "\"longitude\": " + Meguro[i].longitude + "," +
+            JSON.parse("{ \"Name\": \"" + Meguro[i].name + "\"," +
+               "\"Latitude\": " + Meguro[i].latitude + "," +
+               "\"Longitude\": " + Meguro[i].longitude + "," +
                "\"distance\": " + res * radius + "}")
          );
       }
@@ -156,9 +156,9 @@ var cnvs = function draw() {
 
    var diff = (alpha - Math.floor(alpha)) * Math.PI / 180;
 
-   var sabun = Math.sin(diff) * 60 / dis_size.widthInch * canvas.width;
+   var sabun = Math.sin(diff) * 60 / canvas.width;
    var target = Math.ceil(alpha);
-   var onedeg = Math.sin(Math.PI / 180) * dis_size.widthInch * canvas.width;
+   var onedeg = Math.sin(Math.PI / 180) * canvas.width;
    ctx.font = "30px Arial";
    for (var i = -10; i <= 10; i += 2) {
       if (target % 2 == 0) {
