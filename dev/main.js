@@ -174,7 +174,7 @@ var cnvs = function draw() {
    }
 
    for (var i = 0; i < lists.length; i++) {
-      var azim = azimuth(lati, longi, lists[i].latitude, lists[i].longitude);
+      var azim = azimuth(lati, longi, lists[i].Latitude, lists[i].Longitude);
       //console.log(azim, longi, lati);
 
       var position = (azim - alpha + 360 - Math.ceil(azim - alpha + 360, 360) * 360) * onedeg;
