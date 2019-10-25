@@ -148,7 +148,7 @@ var k = 0;
 var cnvs = function draw() {
    canvas = document.getElementById('sample');
    ctx = canvas.getContext('2d');
-   canvas.width = 480;
+   canvas.width = 1080;
    canvas.height = 720;
 
    ctx.fillStyle = '#000000';
