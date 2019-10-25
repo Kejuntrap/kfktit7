@@ -132,9 +132,9 @@ var getinfo = function getinfo(position) {      //定期的に位置情報をと
       //console.log(radius * res +" "+ Meguro[i].name);
       if (res * radius < maxdist) {
          lists.push(
-            JSON.parse("{ \"Name\": \"" + Meguro[i].name + "\"," +
-               "\"Latitude\": " + Meguro[i].latitude + "," +
-               "\"Longitude\": " + Meguro[i].longitude + "," +
+            JSON.parse("{ \"Name\": \"" + Meguro[i].Name + "\"," +
+               "\"Latitude\": " + Meguro[i].Latitude + "," +
+               "\"Longitude\": " + Meguro[i].Longitude + "," +
                "\"distance\": " + res * radius + "}")
          );
       }
