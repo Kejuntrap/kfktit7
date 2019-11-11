@@ -13,7 +13,7 @@ window.addEventListener("deviceorientation", (dat) => {     //非同期処理。
 
    text = alpha;
 
-}), false;
+}), true;
 
 
 function main() {    //最初に呼ばれる処理
