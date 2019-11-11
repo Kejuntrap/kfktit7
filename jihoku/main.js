@@ -1,30 +1,20 @@
-let sensor = new Magnetometer();
-sensor.start();
+var magneticSensor = tizen.sensorservice.getDefaultSensor("MAGNETIC");
 
-sensor.addEventListener('reading', () => {
-   console.log(sensor.x);
-   console.log(sensor.y);
-   console.log(sensor.z);
-});
-
-function main() {
+function onGetSuccessCB(sensorData) {
+   console.log("Magnetic field of the X axis: " + sensorData.x);
+   console.log("Magnetic field of the Y axis: " + sensorData.y);
+   console.log("Magnetic field of the Z axis: " + sensorData.z);
    var cont = document.getElementById("content");
-   cont.innerHTML = sensor.x + " " + sensor.y;
+   cont.innerHTML = sensorData.x + " " + sensorData.y;
 }
 
-window.onload = function () {
-   main();
-};
-
-function handlePermission() {
-   navigator.permissions.query({ name: 'magnetometer' }).then(function (result) {
-      if (result.state == 'granted') {
-         alert("granted");
-      } else if (result.state == 'prompt') {
-         alert("prompt");
-      } else if (result.state == 'denied') {
-         alert("denied");
-      }
-   });
+function onerrorCB(error) {
+   console.log("Error occurred");
 }
-handlePermission();
+
+function onsuccessCB() {
+   console.log("Sensor start");
+   magneticSensor.getMagneticSensorData(onGetSuccessCB, onerrorCB);
+}
+
+magneticSensor.start(onsuccessCB);
