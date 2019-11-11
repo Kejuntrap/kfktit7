@@ -14,6 +14,7 @@ function onerrorCB(error) {
 
 function onsuccessCB() {
    console.log("Sensor start");
+   alert("OK");
    magneticSensor.getMagneticSensorData(onGetSuccessCB, onerrorCB);
 }
 
