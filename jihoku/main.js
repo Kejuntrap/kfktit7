@@ -26,7 +26,7 @@ var getinfo = function getinfo(position) {      //定期的に位置情報をと
 
    var geo_text = "緯度:" + position.coords.latitude;
    geo_text += " 経度:" + position.coords.longitude;
-   geo_text += "角度" + alpha;
+   geo_text += "角度" + alpha + "true";
 
 
    const now_lat = position.coords.latitude * Math.PI / 180.0;
