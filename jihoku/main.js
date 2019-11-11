@@ -1,4 +1,4 @@
-const sensor = new Magnetometer();
+let sensor = new Magnetometer();
 sensor.start();
 
 sensor.addEventListener('reading', () => {
@@ -15,3 +15,15 @@ function main() {
 window.onload = function () {
    main();
 };
+
+function handlePermission() {
+   navigator.permissions.query({ name: 'magnetometer' }).then(function (result) {
+      if (result.state == 'granted') {
+         alert("granted");
+      } else if (result.state == 'prompt') {
+         alert("prompt");
+      } else if (result.state == 'denied') {
+         alert("denied");
+      }
+   });
+}
