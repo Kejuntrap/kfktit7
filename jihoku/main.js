@@ -1,4 +1,5 @@
 const sensor = new Magnetometer();
+sensor.start();
 
 sensor.addEventListener('reading', () => {
    console.log(sensor.x);
@@ -12,6 +13,5 @@ function main() {
 }
 
 window.onload = function () {
-   sensor.start();
    main();
 };
