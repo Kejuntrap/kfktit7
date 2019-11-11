@@ -25,8 +25,6 @@ var getinfo = function getinfo(position) {      //定期的に位置情報をと
 
    var geo_text = "緯度:" + position.coords.latitude;
    geo_text += " 経度:" + position.coords.longitude;
-   geo_text += " 高度:" + position.coords.altitude;
-   geo_text += " 位置精度:" + position.coords.accuracy;  //誤差　周囲hoge m みたいな感じ
    geo_text += "角度" + alpha;
 
 
