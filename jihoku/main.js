@@ -5,8 +5,6 @@ var alpha = 0, beta = 0, gamma = 0;             // ジャイロの値を入れ�
 var lati = -1;
 var longi = -1;  //現在の緯度経度(deg)
 
-var head = -1;
-
 
 window.addEventListener("deviceorientation", (dat) => {     //非同期処理。　コンパスの座標を取得
    alpha = dat.alpha;  // z軸（表裏）まわりの回転の角度（反時計回りがプラス）
@@ -22,13 +20,6 @@ function main() {    //最初に呼ばれる処理
    navigator.geolocation.watchPosition(getinfo);
 }
 
-window.ondeviceorientation = function (event) {    //スマンホホの方角を示すAPIを変えてみた
-
-   // コンパスの向き
-   // 0から360の間の値を取得でき、0が北、90が東、180が南、270が西を示す。
-   // 取得した値がマイナスの場合、正しい値が取得できていないことを示す。
-   head = event.webkitCompassHeading;
-}
 
 
 var getinfo = function getinfo(position) {      //定期的に位置情報をとってくる関数(非同期)
@@ -36,7 +27,7 @@ var getinfo = function getinfo(position) {      //定期的に位置情報をと
    var geo_text = "緯度:" + position.coords.latitude;
    geo_text += " 経度:" + position.coords.longitude;
    geo_text += "角度" + alpha;
-   geo_text += "heading" + head;
+   geo_text += "heading" + position.coordinates.heading;
 
 
    const now_lat = position.coords.latitude * Math.PI / 180.0;
