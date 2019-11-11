@@ -36,7 +36,7 @@ var getinfo = function getinfo(position) {      //定期的に位置情報をと
    lati = position.coords.latitude;
    longi = position.coords.longitude;
    var cont = document.getElementById("content");
-   cont.text = geo_text;
+   cont.innerHTML = geo_text;
 }
 
 
